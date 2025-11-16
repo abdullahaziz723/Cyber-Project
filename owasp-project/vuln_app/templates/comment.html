@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Stored XSS Test</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white p-8">
+
+  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-2xl">
+
+    <h1 class="text-3xl font-bold mb-4">💬 Stored XSS (Vulnerable)</h1>
+
+    <form method="post" action="/comment" class="space-y-4">
+      <input name="user" placeholder="Your name"
+             class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600">
+
+      <textarea name="comment" placeholder="Write a comment (Try XSS payload)..."
+                class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600"></textarea>
+
+      <button class="w-full bg-yellow-600 hover:bg-yellow-700 p-3 rounded-lg font-bold text-xl">
+        Post Comment
+      </button>
+    </form>
+
+    <hr class="my-6 border-gray-700">
+
+    <h2 class="text-2xl font-semibold mb-4">Latest Comments</h2>
+
+    <ul class="space-y-3">
+      {% for comment in comments %}
+        <li class="bg-gray-700 p-3 rounded-lg">
+          <strong>{{ comment[0] }}</strong>: {{ comment[1] | safe }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <a href="/" class="block mt-6 text-blue-400 hover:underline">⬅ Back</a>
+
+  </div>
+
+</body>
+</html>
