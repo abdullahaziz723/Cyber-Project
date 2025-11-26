@@ -8,33 +8,24 @@
 
 <body class="bg-gray-900 text-white p-8">
 
-  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-2xl shadow-lg">
+  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-xl shadow-lg">
 
-    <h1 class="text-3xl font-bold mb-4">🔍 Secure Search (Patched)</h1>
-    <p class="text-gray-400 mb-4">This form uses parameterized SQL queries.</p>
+    <h1 class="text-3xl font-bold mb-4">🔍 Secure Search (SQLi Patched)</h1>
 
     <form method="get" class="space-y-4">
-      <input 
-        name="q"
-        value="{{ q }}"
-        placeholder="Search users..."
-        class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600 text-white"
-      >
-
-      <button class="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg font-bold text-xl">
-        Search
-      </button>
+      <input name="q" value="{{ q }}" placeholder="Search user..." class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600">
+      <button class="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg text-xl font-bold">Search</button>
     </form>
 
-    <h2 class="text-2xl font-semibold mt-6 mb-2">Results</h2>
+    <h2 class="text-2xl font-semibold mt-6">Results</h2>
 
-    <ul class="space-y-2">
+    <ul class="space-y-2 mt-2">
       {% for r in results %}
         <li class="bg-gray-700 p-3 rounded-lg">{{ r[1] }} — {{ r[2] }}</li>
       {% endfor %}
     </ul>
 
-    <a href="/" class="block mt-6 text-blue-400 hover:underline">⬅ Back</a>
+    <a href="/" class="block text-blue-400 mt-4">⬅ Back</a>
 
   </div>
 
