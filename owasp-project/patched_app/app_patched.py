@@ -41,7 +41,14 @@ def add_security_headers(response):
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["Referrer-Policy"] = "no-referrer"
-    response.headers["Content-Security-Policy"] = "default-src 'self'; script-src 'self' https://cdn.tailwindcss.com"
+    
+    # ✅ FIXED CSP (TailwindCSS now loads properly)
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' https://cdn.tailwindcss.com; "
+        "style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com;"
+    )
+
     return response
 
 
@@ -65,7 +72,7 @@ def search():
     return render_template("search.html", q=q, results=results)
 
 
-# Secure XSS (autoescaping enabled)
+# Secure XSS (autoescaped)
 @app.route("/comment", methods=["GET", "POST"])
 def comment():
     if request.method == "POST":
@@ -89,7 +96,7 @@ def comment():
     return render_template("comment.html", comments=comments)
 
 
-# CSRF-Protected Profile Update
+# CSRF-Protected Profile Page
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     if request.method == "POST":

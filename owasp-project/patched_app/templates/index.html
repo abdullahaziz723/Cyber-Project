@@ -4,20 +4,84 @@
   <meta charset="utf-8">
   <title>Secure OWASP App</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Smooth fade-in */
+    .fade-in {
+      animation: fadeIn 1.2s ease-in-out forwards;
+      opacity: 0;
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Button hover glow */
+    .glow:hover {
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transform: translateY(-3px);
+      transition: 0.3s ease;
+    }
+
+    /* Background animated gradient */
+    body {
+      background: linear-gradient(135deg, #0f0f0f, #1a1a2e, #16213e);
+      background-size: 300% 300%;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Glassmorphic card */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  </style>
 </head>
 
-<body class="bg-gray-900 text-white min-h-screen flex items-center justify-center">
-  <div class="max-w-lg w-full bg-gray-800 p-8 rounded-2xl shadow-lg">
-    
-    <h1 class="text-3xl font-bold mb-6 text-center">🛡️ Secure Web App</h1>
-    <p class="text-center text-gray-400 mb-6">Patched version with security fixes</p>
+<body class="text-white min-h-screen flex items-center justify-center">
 
-    <ul class="space-y-4">
-      <li><a href="/search" class="block bg-blue-600 hover:bg-blue-700 p-4 rounded-xl text-center text-xl">🔍 Secure Search</a></li>
-      <li><a href="/comment" class="block bg-yellow-600 hover:bg-yellow-700 p-4 rounded-xl text-center text-xl">💬 Secure Comments</a></li>
-      <li><a href="/profile" class="block bg-green-600 hover:bg-green-700 p-4 rounded-xl text-center text-xl">🔐 CSRF-Protected Profile</a></li>
+  <div class="max-w-lg w-full glass-card p-10 rounded-3xl shadow-xl fade-in">
+
+    <h1 class="text-5xl font-extrabold mb-4 text-center bg-gradient-to-r from-green-400 to-blue-500 bg-clip-text text-transparent">
+      🛡️ Secure Web App
+    </h1>
+
+    <p class="text-center text-gray-300 text-lg mb-8 tracking-wide">
+      Fully patched and protected against OWASP Top 10 vulnerabilities
+    </p>
+
+    <ul class="space-y-5">
+
+      <li>
+        <a href="/search"
+           class="block glow bg-blue-600 hover:bg-blue-700 p-4 rounded-xl text-center text-xl font-semibold transition">
+           🔍 Secure Search (SQLi Protected)
+        </a>
+      </li>
+
+      <li>
+        <a href="/comment"
+           class="block glow bg-yellow-500 hover:bg-yellow-600 p-4 rounded-xl text-center text-xl font-semibold text-black transition">
+           💬 Secure Comments (XSS Protected)
+        </a>
+      </li>
+
+      <li>
+        <a href="/profile"
+           class="block glow bg-green-600 hover:bg-green-700 p-4 rounded-xl text-center text-xl font-semibold transition">
+           🔐 CSRF- Profile
+        </a>
+      </li>
+
     </ul>
 
   </div>
+
 </body>
 </html>
