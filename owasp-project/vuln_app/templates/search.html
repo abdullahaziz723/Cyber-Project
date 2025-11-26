@@ -2,30 +2,35 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>SQL Injection Test</title>
+  <title>SQL Injection</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-gray-900 text-white p-8">
 
-  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-2xl">
-    <h1 class="text-3xl font-bold mb-4">🔍 SQL Injection (Vulnerable)</h1>
+<body class="bg-gray-900 text-white p-10">
 
-    <form method="get" action="/search" class="space-y-4">
-      <input type="text" name="q" value="{{ q }}" placeholder="Search user..."
-             class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600">
-      <button class="w-full bg-blue-600 hover:bg-blue-700 p-3 rounded-lg font-bold text-xl">
+  <div class="max-w-xl mx-auto bg-gray-800 p-8 rounded-xl shadow-lg">
+
+    <h1 class="text-3xl font-bold mb-6">🔍 SQL Injection (Vulnerable)</h1>
+
+    <form method="get" class="space-y-4">
+      <input name="q" value="{{ q }}" placeholder="Search user..."
+      class="w-full p-3 rounded-lg bg-gray-700 border border-gray-600">
+
+      <button class="w-full bg-blue-600 p-3 rounded-lg font-bold text-xl">
         Search
       </button>
     </form>
 
-    <h2 class="text-2xl font-semibold mt-6 mb-2">Results</h2>
-    <ul class="space-y-2">
+    <h2 class="text-2xl font-semibold mt-6">Results</h2>
+
+    <ul class="space-y-2 mt-2">
       {% for r in results %}
         <li class="bg-gray-700 p-3 rounded-lg">{{ r[1] }} — {{ r[2] }}</li>
       {% endfor %}
     </ul>
 
-    <a href="/" class="block mt-6 text-blue-400 hover:underline">⬅ Back</a>
+    <a href="/" class="text-blue-400 mt-4 block">⬅ Back</a>
+
   </div>
 
 </body>
